@@ -67,7 +67,7 @@ Details in [`why-cloud.md`](why-cloud.md)
 
 This preview repo is paired with a full in-depth post available to paid subscribers.
 
-[Get the complete architecture and decision analysis here](https://your-substack-link.com/payment-blueprint)
+[Get the complete architecture and decision analysis here](https://architectsassemble.substack.com/)
 
 ---
 
