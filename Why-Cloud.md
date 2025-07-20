@@ -66,4 +66,4 @@ By designing with AWS-native services, this architecture delivers:
 ---
 
 The full implementation, trade-offs, and diagram are available in the paid post**  
-👉 [View the full payment architecture blueprint](https://architectsassemble.substack.com/)
+👉 [View the payment architecture analysis](https://architectsassemble.substack.com/p/building-real-time-payments-uk-fast)
