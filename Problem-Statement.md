@@ -60,7 +60,7 @@ This blueprint brings modern, compliant, real-time infrastructure into focus —
 ---
 
 Read the full architecture and decision matrix in the paid post 
-👉 [Unlock the Full AWS Payment Blueprint](https://architectsassemble.substack.com/)
+👉 [Unlock the AWS Payment Blueprint with deep component analysis ](https://architectsassemble.substack.com/p/building-real-time-payments-uk-fast)
 
 
 ⸻
