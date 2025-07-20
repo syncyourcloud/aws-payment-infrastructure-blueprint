@@ -18,24 +18,22 @@ AWS architectures -Fintech
 
 ---
 
-## 🔐 What’s in the Full Paid Blueprint
+What’s in the Full Paid Blueprint
 
-- ✅ Dark-mode AWS architecture diagram (production-ready)
+- ✅ AWS architecture diagram (production-ready)
 - ⚖️ Decision matrix: compute, DB, messaging, latency, cost
 - 🔐 Compliance mapping: PCI DSS, PSD2, SOC2
-- 🧱 Deployment approach (Terraform/CDK scaffolding)
-- 📉 Cost and performance trade-offs
-- 🌍 Resilience and downtime mitigation
 
-> 👉 Unlock the full post here: [Read the Full Architecture & Decision Analysis](https://link coming soon)
+
+> 👉 Unlock the full post here: Read the Full Architecture & Decision Analysis(https://architectsassemble.substack.com/p/building-real-time-payments-uk-fast)
 
 ---
 
 ## 📷 Architecture Diagram (Preview)
 
-![Architecture Preview](architecture-preview coming soon.png)
 
-*Note: Full diagram available to subscribers in the paid post.*
+
+Note: Architecture analysis in the paid post.
 
 ---
 
