@@ -7,13 +7,13 @@ This is a simplified preview of a production-grade architecture for real-time pa
 🛠️ Part of the Building Tomorrow’s Financial Systems* series  
 🔗 https://architectsassemble.substack.com/p/building-real-time-payments-uk-fast
 
-### 🧠 AI Agent Layer Coming Soon!
+###  AI Agent Layer Coming Soon!
 
 Integration of Amazon Bedrock to support secure, compliant, LLM-based decisioning in the payment orchestration:
 
-- 🔐 Tokenized input – No PII is exposed
-- 🧾 Logged prompts + responses – for compliance & audits
-- 🧠 Use cases: fraud scoring, routing decisions, regulatory flagging
+- Tokenized input – No PII is exposed
+- Logged prompts + responses – for compliance & audits
+- Use cases: fraud scoring, routing decisions, regulatory flagging
 
 All AI interactions are optional, isolated, and fully auditable.
 
