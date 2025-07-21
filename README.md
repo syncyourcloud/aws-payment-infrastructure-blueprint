@@ -2,6 +2,8 @@
 AWS architectures -Fintech
 # AWS Payment Infrastructure Blueprint 
 
+⭐ 100+ engineers cloned this repo in the first 5 days.
+
 This is a simplified preview of a production-grade architecture for real-time payment processing, designed using AWS Well-Architected best practices and financial compliance considerations.
 
 🛠️ Part of the Building Tomorrow’s Financial Systems series  
