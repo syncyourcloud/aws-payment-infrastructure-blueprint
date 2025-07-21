@@ -2,9 +2,9 @@
 AWS architectures -Fintech
 # AWS Payment Infrastructure Blueprint 
 
-**This is a simplified preview of a production-grade architecture for real-time payment processing, designed using AWS Well-Architected best practices and financial compliance considerations.
+This is a simplified preview of a production-grade architecture for real-time payment processing, designed using AWS Well-Architected best practices and financial compliance considerations.
 
-🛠️ Part of the *Building Tomorrow’s Financial Systems* series  
+🛠️ Part of the Building Tomorrow’s Financial Systems* series  
 🔗 https://architectsassemble.substack.com/p/building-real-time-payments-uk-fast
 
 ---
@@ -66,6 +66,8 @@ Details in [`why-cloud.md`](why-cloud.md)
 This preview repo is paired with a full in-depth post available to paid subscribers.
 
 [Get the complete architecture and decision analysis here](https://architectsassemble.substack.com/)
+
+Star if you found this useful.
 
 ---
 
