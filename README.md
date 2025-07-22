@@ -2,7 +2,7 @@
 AWS architectures -Fintech
 # AWS Payment Infrastructure Blueprint 
 
-⭐ 100+ engineers cloned this repo in the first 5 days.
+⭐ 150+ engineers cloned this repo in the first 5 days.
 
 Just released the next part in the series. The strategic decision analysis. Follow along here: https://architectsassemble.substack.com/p/uk-faster-payments-architecture-strategic
 
