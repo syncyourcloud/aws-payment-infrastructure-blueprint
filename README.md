@@ -4,6 +4,8 @@ AWS architectures -Fintech
 
 ⭐ 100+ engineers cloned this repo in the first 5 days.
 
+Just released the next part in the series. The strategic decision analysis. Follow along here: https://architectsassemble.substack.com/p/uk-faster-payments-architecture-strategic
+
 This is a simplified preview of a production-grade architecture for real-time payment processing, designed using AWS Well-Architected best practices and financial compliance considerations.
 
 🛠️ Part of the Building Tomorrow’s Financial Systems series  
