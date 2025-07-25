@@ -4,7 +4,7 @@ AWS architectures -Fintech
 
 ⭐ 150+ engineers cloned this repo in the first 5 days. 
 
-Thank you for your support and will continue to improve and evolve modent financial systems. This architecture will evolve over time as we overcome the challenges that we face today in fintech. 
+Thank you for your support and I will continue to improve and evolve modern financial systems. This architecture will evolve over time as we overcome the challenges that we face today in fintech. 
 
 Stay tuned for the next part coming up this weekend: UK Faster Payment Systems: Architecting for Compliance. In this part you will receive an understanding of how to approach the compliance with the technical aspect. Follow along here for the series: https://architectsassemble.substack.com/p/uk-faster-payments-architecture-strategic
 
@@ -23,6 +23,8 @@ Integration of Amazon Bedrock to support secure, compliant, LLM-based decisionin
 - Tokenized input – No PII is exposed
 - Logged prompts + responses – for compliance & audits
 - Use cases: fraud scoring, routing decisions, regulatory flagging
+
+To understand how AI Agents work here's a popular post: https://blog.syncyourcloud.io/architecting-ai-agent-based-payment-infrastructure-with-aws-bedrock
 
 All AI interactions are optional, isolated, and fully auditable.
 
