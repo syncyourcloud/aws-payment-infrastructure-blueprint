@@ -2,13 +2,15 @@
 AWS architectures -Fintech
 # AWS Payment Infrastructure Blueprint 
 
-⭐ 150+ engineers cloned this repo in the first 5 days.
+⭐ 150+ engineers cloned this repo in the first 5 days. 
 
-Just released the next part in the series. The strategic decision analysis. Follow along here: https://architectsassemble.substack.com/p/uk-faster-payments-architecture-strategic
+Thank you for your support and will continue to improve and evolve modent financial systems. This architecture will evolve over time as we overcome the challenges that we face today in fintech. 
+
+Stay tuned for the next part coming up this weekend: UK Faster Payment Systems: Architecting for Compliance. In this part you will receive an understanding of how to approach the compliance with the technical aspect. Follow along here for the series: https://architectsassemble.substack.com/p/uk-faster-payments-architecture-strategic
 
 This is a simplified preview of a production-grade architecture for real-time payment processing, designed using AWS Well-Architected best practices and financial compliance considerations.
 
-Aligns well with the UK FPS.
+Aligns well with the UK FPS and the AWS Well-Architected Framework.
 
 
 🛠️ Part of the Building Tomorrow’s Financial Systems series  
