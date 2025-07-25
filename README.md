@@ -6,6 +6,14 @@ AWS architectures -Fintech
 
 Thank you for your support and I will continue to improve and evolve modern financial systems. This architecture will evolve over time as we overcome the challenges that we face today in fintech. 
 
+## Subscribe for Full Access
+
+This preview repo is paired with a full in-depth post available to paid subscribers.
+
+[Get the complete architecture and decision analysis here](https://architectsassemble.substack.com/)
+
+Star if you found this useful.
+
 Stay tuned for the next part coming up this weekend: UK Faster Payment Systems: Architecting for Compliance. In this part you will receive an understanding of how to approach the compliance with the technical aspect. Follow along here for the series: https://architectsassemble.substack.com/p/uk-faster-payments-architecture-strategic
 
 This is a simplified preview of a production-grade architecture for real-time payment processing, designed using AWS Well-Architected best practices and financial compliance considerations.
@@ -82,15 +90,6 @@ Details in [`why-cloud.md`](why-cloud.md)
 
 ---
 
-## 📬 Subscribe for Full Access
-
-This preview repo is paired with a full in-depth post available to paid subscribers.
-
-[Get the complete architecture and decision analysis here](https://architectsassemble.substack.com/)
-
-Star if you found this useful.
-
----
 
 ##  License
 
