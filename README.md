@@ -4,9 +4,12 @@ AWS architectures -Fintech
 
 ⭐ 180+ engineers cloned this repo in the first 7 days. 
 
-Thank you for your support and I will continue to improve and evolve modern financial systems. This architecture will evolve over time as we overcome the challenges that we face today in fintech. 
+Thank you for your support. This architecture will evolve over time as we overcome the challenges that we face today in fintech. 
 
 ## Subscribe for Full Access
+
+UPDATE: Read the full technical details [From Lambda to Bedrock - The Architecture Behind Payments]([https://substack.com/home/post/p-169945590/)]. This part in the series integrates the queue agent.
+
 
 This preview repo is paired with a full in-depth post available to paid subscribers.
 
