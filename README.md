@@ -27,7 +27,7 @@ Aligns well with the UK FPS and the AWS Well-Architected Framework.
 🛠️ Part of the Building Tomorrow’s Financial Systems series  
 🔗 https://architectsassemble.substack.com/p/building-real-time-payments-uk-fast
 
-###  AI Agent Layer Coming Soon!
+###  AI Agent Layer Coming This Weekend! 
 
 Integration of Amazon Bedrock to support secure, compliant, LLM-based decisioning in the payment orchestration:
 
