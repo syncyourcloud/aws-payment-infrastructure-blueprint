@@ -10,6 +10,8 @@ Thank you for your support. This architecture will evolve over time as we overco
 
 UPDATE: Next part in series published - [tokenisation]([https://substack.com/home/post/p-170024315]) Learn how to secure the data before the data enters the DynamoDB table. Architecture diagram update coming soon.
 
+Added the payments processing systems diagram flow.
+
 
 UPDATE: Read the full technical details [From Lambda to Bedrock - The Architecture Behind Payments]([https://substack.com/home/post/p-169945590/)]. This part in the series integrates the queue agent.
 
