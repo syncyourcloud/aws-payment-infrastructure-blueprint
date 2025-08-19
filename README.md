@@ -8,6 +8,8 @@ Thank you for your support. This architecture will evolve over time as we overco
 
 ## Subscribe for Full Access
 
+UPDATE: Next part in the series published: [Architecture Workflow explains how money flows]([https://architectsassemble.substack.com/p/edge-to-ledger-shows-you-exactly])
+
 UPDATE: Next part in series published - [tokenisation]([https://substack.com/home/post/p-170024315]) Learn how to secure the data before the data enters the DynamoDB table. Architecture diagram update coming soon.
 
 Added the payments processing systems diagram flow.
