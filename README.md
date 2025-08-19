@@ -2,9 +2,9 @@
 AWS architectures -Fintech
 # AWS Payment Infrastructure Blueprint 
 
-⭐ 180+ engineers cloned this repo in the first 7 days. 
 
-Thank you for your support. This architecture will evolve over time as we overcome the challenges that we face today in fintech. 
+
+Thank you for your support. ⭐ 180+ engineers cloned this repo in the first 7 days. This architecture will evolve over time as we overcome the challenges that we face today in fintech. 
 
 ## Subscribe for Full Access
 
