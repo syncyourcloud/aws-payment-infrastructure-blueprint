@@ -7,6 +7,7 @@ AWS architectures -Fintech
 Thank you for your support. ⭐ 180+ engineers cloned this repo in the first 7 days. This architecture will evolve over time as we overcome the challenges that we face today in fintech. 
 
 ## Subscribe for Full Access
+UPDATE: Part 11 released - Costs Analysis of our architecure: [Cost Analysis of architecting Payments]([[https://architectsassemble.substack.com/p/edge-to-ledger-shows-you-exactly](https://architectsassemble.substack.com/p/how-much-does-one-payment-really)])
 
 UPDATE: Next part in the series published: [Architecture Workflow explains how money flows]([https://architectsassemble.substack.com/p/edge-to-ledger-shows-you-exactly])
 
