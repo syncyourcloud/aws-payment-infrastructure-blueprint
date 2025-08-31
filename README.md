@@ -7,11 +7,11 @@ AWS architectures -Fintech
 Thank you for your support. ⭐ 180+ engineers cloned this repo in the first 7 days. This architecture will evolve over time as we overcome the challenges that we face today in fintech. 
 
 ## Subscribe for Full Access
-UPDATE: Part 11 released - Costs Analysis of our architecure: [Cost Analysis of architecting payments]([[https://architectsassemble.substack.com/p/edge-to-ledger-shows-you-exactly](https://architectsassemble.substack.com/p/how-much-does-one-payment-really)])
+UPDATE: Part 11 released - Costs Analysis of our architecure: [Cost Analysis of architecting payments]([https://architectsassemble.substack.com/p/edge-to-ledger-shows-you-exactly](https://architectsassemble.substack.com/p/how-much-does-one-payment-really)
 
-UPDATE: Next part in the series published: [Architecture Workflow explains how money flows]([https://architectsassemble.substack.com/p/edge-to-ledger-shows-you-exactly])
+UPDATE: Next part in the series published: [Architecture Workflow explains how money flows](https://architectsassemble.substack.com/p/edge-to-ledger-shows-you-exactly)
 
-UPDATE: Next part in series published - [tokenisation]([https://substack.com/home/post/p-170024315]) Learn how to secure the data before the data enters the DynamoDB table. Architecture diagram update coming soon.
+UPDATE: Next part in series published - [tokenisation](https://substack.com/home/post/p-170024315) Learn how to secure the data before the data enters the DynamoDB table. Architecture diagram update coming soon.
 
 Added the payments processing systems diagram flow.
 
