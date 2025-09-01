@@ -42,7 +42,7 @@ Unlock the full post: https://architectsassemble.substack.com/p/building-real-ti
 
 ---
 
-## H1: Payments infrastructure on AWS — core design goals
+##Payments infrastructure on AWS — core design goals
 - **Sub-second processing** for UX and conversion.  
 - **Defense-in-depth security** to reduce PCI scope and enable enterprise trust.  
 - **Event-driven design** for real-time analytics and fraud detection.  
@@ -53,7 +53,7 @@ All of which connects to better margins, faster launches, and easier partner int
 
 ---
 
-## H2: Architecture preview (payments infra pattern)
+##Architecture preview (payments infra pattern)
 Short flow (preview):
 This preview content is shared for educational, non-commercial use only.  
 All rights reserved © [Lee C / SyncYourCloud.io].
