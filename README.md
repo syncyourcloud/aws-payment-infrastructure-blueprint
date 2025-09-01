@@ -35,10 +35,8 @@ Digital payments scale is exploding. Payments infra must be low-latency, resilie
 **Full paid blueprint (unlock)**
 - AWS architecture diagram  
 - Decision matrix: compute, DB, messaging, latency, cost  
-- IaC snippets (CloudFormation / Terraform examples)  
 - Cost analysis & FinOps playbook  
-- Compliance mapping: PCI DSS, PSD2, SOC2, GDPR  
-- Audit evidence templates and runbooks
+
 
 Unlock the full post: https://architectsassemble.substack.com/p/building-real-time-payments-uk-fast
 
