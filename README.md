@@ -8,7 +8,7 @@ Keywords: payments infrastructure, payments infra, AWS payments architecture, re
 **Payments infrastructure on AWS — Fintech**  
 ⭐ _180+ engineers cloned this repo in the first 7 days.
 
-Update: [Payment Logic released](https://architectsassemble.substack.com/p/how-payments-are-processed-clear)
+Update: [Next post on Payment logic released](https://architectsassemble.substack.com/p/how-payments-are-processed-clear)
 
 > A practical, production-minded blueprint for building fast, secure, auditable payment systems on AWS. Use this repo to design your payments infra with tokenization, streaming fraud detection, and compliance.
 
