@@ -56,15 +56,15 @@ All of which connects to better margins, faster launches, and easier partner int
 ---
 
 ## COMING UP - To be added to the architecture diagram.
-- **Add distributed tracing — enable AWS X-Ray (or OpenTelemetry) across API Gateway, Lambda, Step Functions, and DB clients. Propagate a single trace_id/correlation_id from request start to ledger entry and all log lines.
-- **Idempotency store — store idempotency_key + status + ledger_tx_id (TTL for incomplete) in DynamoDB (or ledger) so retries map to the same transaction. Enforce idempotency at the API Gateway / initial Lambda layer.
-- **DLQ + retry strategy — use SQS or Lambda Destinations for failed Kinesis/Lambda writes and add exponential backoff; create an exceptions queue that’s routable to ops.
-- **Choose and enforce one immutable ledger pattern — either use QLDB for cryptographic proof or DynamoDB with append-only writes cryptographic hash chain (store hash in S3/QLDB). Document the reason.
-- **Reconciliation service — implement a small service that: (a) ingests settlement files (SFTP, PSP webhooks, bank statements), (b) matches by trace / amount / timestamp with tolerance rules, (c) writes matches to ledger and pushes exceptions to an ops queue. Use Kinesis -> Lambda -> reconciler + S3 snapshot + Athena for analytics.
-- **SLOs and monitoring — instrument per-stage metrics (latency, error-rate, queue depth). Create CloudWatch alarms and routes to PagerDuty. Add dashboards for pending counts by reason (verification, funds, rails).
-- **Structured logging + PII gating — ensure logs have structured JSON with correlation_id, masked PII, and are routed to an indexable store (CloudWatch Logs / OpenSearch) with retention and Macie checks.
-- **Webhook & PSP mapping — map every external PSP/bank status to your internal lifecycle enums (e.g., INITIATED, AUTH_PENDING, CLEARED, SETTLED, FAILED, REVERSED) so reconciliation logic is deterministic.
-- **Manual runbook + UI for exceptions — provide an ops UI showing exception queue entries plus 1-click re-process or compensation actions. Include audit trail for manual fixes.
+- **Add distributed tracing** — enable AWS X-Ray (or OpenTelemetry) across API Gateway, Lambda, Step Functions, and DB clients. Propagate a single trace_id/correlation_id from request start to ledger entry and all log lines.
+- **Idempotency store** — store idempotency_key + status + ledger_tx_id (TTL for incomplete) in DynamoDB (or ledger) so retries map to the same transaction. Enforce idempotency at the API Gateway / initial Lambda layer.
+- **DLQ + retry strategy** — use SQS or Lambda Destinations for failed Kinesis/Lambda writes and add exponential backoff; create an exceptions queue that’s routable to ops.
+- **Choose and enforce one immutable ledger pattern** — either use QLDB for cryptographic proof or DynamoDB with append-only writes cryptographic hash chain (store hash in S3/QLDB). Document the reason.
+- **Reconciliation service** — implement a small service that: (a) ingests settlement files (SFTP, PSP webhooks, bank statements), (b) matches by trace / amount / timestamp with tolerance rules, (c) writes matches to ledger and pushes exceptions to an ops queue. Use Kinesis -> Lambda -> reconciler + S3 snapshot + Athena for analytics.
+- **SLOs and monitoring** — instrument per-stage metrics (latency, error-rate, queue depth). Create CloudWatch alarms and routes to PagerDuty. Add dashboards for pending counts by reason (verification, funds, rails).
+- **Structured logging + PII gating** — ensure logs have structured JSON with correlation_id, masked PII, and are routed to an indexable store (CloudWatch Logs / OpenSearch) with retention and Macie checks.
+- **Webhook & PSP mapping** — map every external PSP/bank status to your internal lifecycle enums (e.g., INITIATED, AUTH_PENDING, CLEARED, SETTLED, FAILED, REVERSED) so reconciliation logic is deterministic.
+- **Manual runbook + UI for exceptions** — provide an ops UI showing exception queue entries plus 1-click re-process or compensation actions. Include audit trail for manual fixes.
 
 ---
 
