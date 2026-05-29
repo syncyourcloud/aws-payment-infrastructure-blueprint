@@ -1,74 +1,105 @@
-<!--
-Title: AWS Payment Infrastructure Blueprint — production-ready payments infrastructure on AWS
-Meta description: Open-source AWS payments infrastructure blueprint for real-time payments: tokenization, streaming fraud detection, PCI DSS & PSD2 compliance, serverless best practices, and FinOps guidance for fintech startups.
-Keywords: payments infrastructure, payments infra, AWS payments architecture, real-time payments, PCI DSS, PSD2, tokenization, fraud detection, serverless payments, fintech architecture
--->
-
 # AWS Payment Infrastructure Blueprint
-**Payments infrastructure on AWS — Fintech**  
-⭐ _180+ engineers cloned this repo in the first 7 days.
+### Agent-Based Payment Systems on AWS — Built for Production
 
-Update: [Next post on Payment logic released](https://architectsassemble.substack.com/p/how-payments-are-processed-clear)
+⭐ 180+ engineers cloned this repo in the first 7 days.
 
-> A practical, production-minded blueprint for building fast, secure, auditable payment systems on AWS. Use this repo to design your payments infra with tokenization, streaming fraud detection, and compliance.
+This repository is a practical, production-minded blueprint for building agent-based payment systems on AWS covering tokenisation, fraud detection, idempotency, compliance, and multi-region failover.
 
----
-
-## Quick links
-- 🔗 Full paid blueprint & decision analysis: https://architectsassemble.substack.com/p/building-real-time-payments-uk-fast  
-- 📂 Problem statement: `docs/problem-statement.md`  
-- 🖼 Architecture preview (PNG): `diagrams/preview-architecture.png`  
-- ✉️ Contact: `enquiries@syncyourcloud.io`
+Use it to design infrastructure that processes payments correctly, operates without constant oversight, and survives regulatory scrutiny.
 
 ---
 
-## TL;DR 
-Digital payments scale is exploding. Payments infra must be low-latency, resilient, and compliant. Slow or insecure payments cost revenue, customers, and trust. This blueprint helps startups and platform teams design payment systems that are fast, cost-efficient, and audit-ready.
+## The Problem This Solves
 
+Most AWS payment infrastructure was built for human-initiated transactions. A customer clicks Pay. A request fires. A response returns.
 
----
+AI agents break that model in three specific ways:
 
-## What this repo contains (preview)
-**Free preview**
-- Problem statement: why payments infrastructure needs to evolve  
-- Simplified architecture diagram (preview)  
-- High-level service breakdown and tactical quick wins
+- They operate continuously — no human in the loop between retries
+- They retry automatically — at millisecond speed, before previous requests have resolved
+- They make decisions autonomously — without human judgment between steps
 
-**Full paid blueprint (unlock)**
-- AWS architecture diagram  
-- Decision matrix: compute, DB, messaging, latency, cost  
-- Cost analysis & FinOps playbook  
+The result is a set of failure modes — duplicate settlements, orphaned transactions, compliance drift, unauditable decision chains — that your current infrastructure has never encountered. And they don't surface in staging. They surface in production.
 
-
-Unlock the full post: https://architectsassemble.substack.com/p/building-real-time-payments-uk-fast
+This blueprint covers the infrastructure patterns that prevent them.
 
 ---
 
-## Payments infrastructure on AWS — core design goals
-- **Sub-second processing** for UX and conversion.  
-- **Defense-in-depth security** to reduce PCI scope and enable enterprise trust.  
-- **Event-driven design** for real-time analytics and fraud detection.  
-- **Cost efficiency** via serverless and FinOps discipline.  
-- **Compliance by design** for PSD2, PCI DSS, and GDPR readiness.
+## What's In This Repo
 
-All of which connects to better margins, faster launches, and easier partner integrations.
+**Free preview (this repo)**
+- Problem statement: why payment infrastructure needs to evolve for agent-based execution
+- Architecture diagram: UK Faster Payments on AWS (production-grade)
+- Security funnel diagram: defence-in-depth for payment systems
+- Core design goals and infrastructure principles
 
----
-
-## COMING UP - To be added to the architecture diagram.
-- **Add distributed tracing** — enable AWS X-Ray (or OpenTelemetry) across API Gateway, Lambda, Step Functions, and DB clients. Propagate a single trace_id/correlation_id from request start to ledger entry and all log lines.
-- **Idempotency store** — store idempotency_key + status + ledger_tx_id (TTL for incomplete) in DynamoDB (or ledger) so retries map to the same transaction. Enforce idempotency at the API Gateway / initial Lambda layer.
-- **DLQ + retry strategy** — use SQS or Lambda Destinations for failed Kinesis/Lambda writes and add exponential backoff; create an exceptions queue that’s routable to ops.
-- **Choose and enforce one immutable ledger pattern** — either use QLDB for cryptographic proof or DynamoDB with append-only writes cryptographic hash chain (store hash in S3/QLDB). Document the reason.
-- **Reconciliation service** — implement a small service that: (a) ingests settlement files (SFTP, PSP webhooks, bank statements), (b) matches by trace / amount / timestamp with tolerance rules, (c) writes matches to ledger and pushes exceptions to an ops queue. Use Kinesis -> Lambda -> reconciler + S3 snapshot + Athena for analytics.
-- **SLOs and monitoring** — instrument per-stage metrics (latency, error-rate, queue depth). Create CloudWatch alarms and routes to PagerDuty. Add dashboards for pending counts by reason (verification, funds, rails).
-- **Structured logging + PII gating** — ensure logs have structured JSON with correlation_id, masked PII, and are routed to an indexable store (CloudWatch Logs / OpenSearch) with retention and Macie checks.
-- **Webhook & PSP mapping** — map every external PSP/bank status to your internal lifecycle enums (e.g., INITIATED, AUTH_PENDING, CLEARED, SETTLED, FAILED, REVERSED) so reconciliation logic is deterministic.
-- **Manual runbook + UI for exceptions** — provide an ops UI showing exception queue entries plus 1-click re-process or compensation actions. Include audit trail for manual fixes.
+**What the architecture covers**
+- Event-driven message queue architecture (SQS, EventBridge, DLQ patterns)
+- Agent orchestration with Step Functions (saga pattern, compensation flows)
+- State management and idempotency (DynamoDB conditional writes, TTL strategy)
+- Security and compliance infrastructure (KMS, Secrets Manager, VPC, WAF)
+- Observability for audit, not just debugging (CloudWatch, X-Ray, structured logging)
+- Multi-region failover and reconciliation patterns
 
 ---
 
-## Architecture preview (payments infra pattern)
-Short flow (preview):
-This preview content is shared for educational, non-commercial use only.  
-All rights reserved © [Lee C / SyncYourCloud.io].
+## Before You Build — Check Your Infrastructure Readiness
+
+The architecture in this repo is a blueprint. Whether your specific AWS environment is ready to run it safely in production is a different question.
+
+Three free tools. No login required.
+
+**[Agentic Readiness Assessment →](https://syncyourcloud.io/tools/agentic-readiness?utm_source=github&utm_medium=readme&utm_campaign=blueprint)**
+21 questions across Agent Orchestration, Security, Compliance, Cost, Observability, Payment Gateway Integration, and Disaster Recovery. Scored gap analysis in 15 minutes.
+
+**[Infrastructure Readiness Score →](https://syncyourcloud.io/tools/infra-readiness?utm_source=github&utm_medium=readme&utm_campaign=blueprint)**
+Assess your AWS environment against PCI DSS 4.0 requirements. Find your compliance gaps before your auditor does.
+
+**[Failure Playbook →](https://syncyourcloud.io/tools/failure-playbook?utm_source=github&utm_medium=readme&utm_campaign=blueprint)**
+Document your recovery procedures for the failure modes that matter — mid-transaction regional failures, agent retry storms, orphaned authorisations.
+
+---
+
+## Coming Up — Architecture Updates in Progress
+
+These patterns are being added to the architecture diagram:
+
+- **Distributed tracing** — X-Ray across API Gateway, Lambda, Step Functions with a single trace_id propagated from request to ledger entry
+- **Idempotency store** — DynamoDB conditional writes with TTL, enforced at the API Gateway layer before any downstream execution
+- **DLQ + retry strategy** — exponential backoff, exceptions queue routable to ops, CloudWatch alarm within 1 minute of any DLQ message
+- **Immutable ledger pattern** — QLDB for cryptographic proof or DynamoDB append-only with hash chain (documented decision, not a choice left open)
+- **Reconciliation service** — settlement file ingestion, match by trace/amount/timestamp, exceptions to ops queue, Athena for analytics
+- **SLOs and monitoring** — per-stage metrics, PagerDuty routing, dashboards for pending counts by failure reason
+- **Structured logging + PII gating** — JSON with correlation_id, masked PII, Macie checks, indexed in CloudWatch/OpenSearch
+- **PSP status mapping** — external PSP/bank statuses mapped to internal lifecycle enums (INITIATED → AUTH_PENDING → CLEARED → SETTLED → FAILED → REVERSED)
+- **Ops UI for exceptions** — queue entries with 1-click reprocess or compensation, audit trail for manual fixes
+
+---
+
+## Full Platform Access
+
+If you're building agent-based payment infrastructure and need more than a blueprint — architecture review, PCI DSS gap analysis, agent flow simulation, cost modelling, or ongoing infrastructure governance — that's what Sync Your Cloud is built for.
+
+**25 purpose-built tools** covering the complete payment infrastructure lifecycle. Connect your AWS account directly for AI-powered analysis of your actual environment.
+
+**[Explore the platform →](https://syncyourcloud.io?utm_source=github&utm_medium=readme&utm_campaign=platform)**
+
+Plans from £999/month. Simulation mode — no execution risk, full decision logs, complete evidence pack for your risk team.
+
+---
+
+## Related Reading
+
+- [AWS Infrastructure for Agent-Based Payment Execution: Architecture, Stages and Reliability](https://blog.syncyourcloud.io/agent-based-payment-infrastructure-the-complete-aws-architecture-for-9999-uptime)
+- [Payment State, Idempotency and Failure Handling: What Agent-Based Systems Actually Require](https://blog.syncyourcloud.io)
+- [Building Tomorrow's Financial Systems — 12-Part Series (Free)](https://architectsassemble.substack.com/p/building-tomorrows-financial-systems-e78)
+
+---
+
+## Contact
+
+Questions about the architecture or the platform: enquiries@syncyourcloud.io
+
+---
+
+*All content © Lee C / SyncYourCloud.io. Architecture diagrams shared for educational use. All rights reserved.*
