@@ -1,11 +1,9 @@
 # AWS Payment Infrastructure Blueprint
-### Agent-Based Payment Systems on AWS — Built for Production
+### Agent-Based Payment Systems on AWS for educational purpose.
 
-⭐ 180+ engineers cloned this repo in the first 7 days.
 
-This repository is a practical, production-minded blueprint for building agent-based payment systems on AWS covering tokenisation, fraud detection, idempotency, compliance, and multi-region failover.
+This repository is a blueprint for building agent-based payment systems on AWS covering tokenisation, fraud detection, idempotency, compliance, and multi-region failover.
 
-Use it to design infrastructure that processes payments correctly, operates without constant oversight, and survives regulatory scrutiny.
 
 ---
 
@@ -15,11 +13,11 @@ Most AWS payment infrastructure was built for human-initiated transactions. A cu
 
 AI agents break that model in three specific ways:
 
-- They operate continuously — no human in the loop between retries
+- They operate continuously, no human in the loop between retries
 - They retry automatically — at millisecond speed, before previous requests have resolved
 - They make decisions autonomously — without human judgment between steps
 
-The result is a set of failure modes — duplicate settlements, orphaned transactions, compliance drift, unauditable decision chains — that your current infrastructure has never encountered. And they don't surface in staging. They surface in production.
+The result is a set of failure modes — duplicate settlements, orphaned transactions, compliance drift, unauditable decision chains that your current infrastructure has never encountered. And they don't surface in staging. They surface in production.
 
 This blueprint covers the infrastructure patterns that prevent them.
 
@@ -29,7 +27,7 @@ This blueprint covers the infrastructure patterns that prevent them.
 
 **Free preview (this repo)**
 - Problem statement: why payment infrastructure needs to evolve for agent-based execution
-- Architecture diagram: UK Faster Payments on AWS (production-grade)
+- Architecture diagram: UK Faster Payments on AWS 
 - Security funnel diagram: defence-in-depth for payment systems
 - Core design goals and infrastructure principles
 
@@ -45,9 +43,9 @@ This blueprint covers the infrastructure patterns that prevent them.
 
 ## Before You Build — Check Your Infrastructure Readiness
 
-The architecture in this repo is a blueprint. Whether your specific AWS environment is ready to run it safely in production is a different question.
+The architecture in this repo is a blueprint. 
 
-Three free tools. No login required.
+Three free tools. 
 
 **[Agentic Readiness Assessment →](https://syncyourcloud.io/tools/agentic-readiness?utm_source=github&utm_medium=readme&utm_campaign=blueprint)**
 21 questions across Agent Orchestration, Security, Compliance, Cost, Observability, Payment Gateway Integration, and Disaster Recovery. Scored gap analysis in 15 minutes.
@@ -78,13 +76,9 @@ These patterns are being added to the architecture diagram:
 
 ## Full Platform Access
 
-If you're building agent-based payment infrastructure and need more than a blueprint — architecture review, PCI DSS gap analysis, agent flow simulation, cost modelling, or ongoing infrastructure governance — that's what Sync Your Cloud is built for.
-
-**25 purpose-built tools** covering the complete payment infrastructure lifecycle. Connect your AWS account directly for AI-powered analysis of your actual environment.
+If you're building agent-based payment infrastructure and need more than a blueprint, architecture review, PCI DSS gap analysis, agent flow simulation, cost modelling, or ongoing infrastructure governance syncyourcloud.io can help.
 
 **[Explore the platform →](https://syncyourcloud.io?utm_source=github&utm_medium=readme&utm_campaign=platform)**
-
-Plans from £999/month. Simulation mode — no execution risk, full decision logs, complete evidence pack for your risk team.
 
 ---
 
