@@ -1,99 +1,240 @@
 # AWS Payment Infrastructure Blueprint
-### Agent-Based Payment Systems on AWS for educational purpose.
 
+A conceptual AWS architecture for reviewing payment flows, failure paths, system boundaries and evidence requirements.
 
-This repository is a blueprint for building agent-based payment systems on AWS covering tokenisation, fraud detection, idempotency, compliance, and multi-region failover.
+This repository is for CTOs, Heads of Engineering, payment architects and technical teams who need to examine an existing or proposed payment flow before implementation, migration or external review.
 
+It applies the Sync Your Cloud method:
 
----
+**Assess · Test · Evidence**
 
-## The Problem This Solves
-
-Most AWS payment infrastructure was built for human-initiated transactions. A customer clicks Pay. A request fires. A response returns.
-
-AI agents break that model in three specific ways:
-
-- They operate continuously, no human in the loop between retries
-- They retry automatically — at millisecond speed, before previous requests have resolved
-- They make decisions autonomously — without human judgment between steps
-
-The result is a set of failure modes — duplicate settlements, orphaned transactions, compliance drift, unauditable decision chains that your current infrastructure has never encountered. And they don't surface in staging. They surface in production.
-
-This blueprint covers the infrastructure patterns that prevent them.
+> This is an educational architecture reference. It is not deployable Infrastructure as Code, a production implementation, PCI DSS certification or a formal QSA assessment.
 
 ---
 
-## What's In This Repo
+## The outcome
 
-**Free preview (this repo)**
-- Problem statement: why payment infrastructure needs to evolve for agent-based execution
-- Architecture diagram: UK Faster Payments on AWS 
-- Security funnel diagram: defence-in-depth for payment systems
-- Core design goals and infrastructure principles
+Use this blueprint to make an AWS payment architecture easier to challenge and explain.
 
-**What the architecture covers**
-- Event-driven message queue architecture (SQS, EventBridge, DLQ patterns)
-- Agent orchestration with Step Functions (saga pattern, compensation flows)
-- State management and idempotency (DynamoDB conditional writes, TTL strategy)
-- Security and compliance infrastructure (KMS, Secrets Manager, VPC, WAF)
-- Observability for audit, not just debugging (CloudWatch, X-Ray, structured logging)
-- Multi-region failover and reconciliation patterns
+It helps a team:
 
----
+- trace a payment from entry point to outcome;
+- identify components, dependencies and trust boundaries;
+- examine state, retry and failure-handling decisions;
+- identify unclear ownership or undocumented assumptions;
+- discuss where security and operational evidence may be needed;
+- record questions that require validation before implementation.
 
-## Before You Build — Check Your Infrastructure Readiness
-
-The architecture in this repo is a blueprint. 
-
-Three free tools. 
-
-**[Agentic Readiness Assessment →](https://syncyourcloud.io/tools/agentic-readiness?utm_source=github&utm_medium=readme&utm_campaign=blueprint)**
-21 questions across Agent Orchestration, Security, Compliance, Cost, Observability, Payment Gateway Integration, and Disaster Recovery. Scored gap analysis in 15 minutes.
-
-**[Infrastructure Readiness Score →](https://syncyourcloud.io/tools/infra-readiness?utm_source=github&utm_medium=readme&utm_campaign=blueprint)**
-Assess your AWS environment against PCI DSS 4.0 requirements. Find your compliance gaps before your auditor does.
-
-**[Failure Playbook →](https://syncyourcloud.io/tools/failure-playbook?utm_source=github&utm_medium=readme&utm_campaign=blueprint)**
-Document your recovery procedures for the failure modes that matter — mid-transaction regional failures, agent retry storms, orphaned authorisations.
+The blueprint does not determine whether an organisation is PCI DSS compliant. Assessment scope, applicable requirements and validation methods must be confirmed with the relevant compliance-accepting entity and, where required, a qualified assessor.
 
 ---
 
-## Coming Up — Architecture Updates in Progress
+## Repository contents
 
-These patterns are being added to the architecture diagram:
+| Resource | Purpose |
+|---|---|
+| [UK Faster Payments architecture](UKFasterPaymentsArchitecture.drawio.png) | Conceptual AWS payment-flow diagram for architecture discussion |
+| [Security funnel](securityfunnel.drawio) | Editable draw.io model for examining layered security controls |
+| [Problem statement](Problem-Statement.md) | Background questions and payment-infrastructure concerns |
+| [Why cloud](Why-Cloud.md) | Discussion of AWS services and cloud architecture considerations |
 
-- **Distributed tracing** — X-Ray across API Gateway, Lambda, Step Functions with a single trace_id propagated from request to ledger entry
-- **Idempotency store** — DynamoDB conditional writes with TTL, enforced at the API Gateway layer before any downstream execution
-- **DLQ + retry strategy** — exponential backoff, exceptions queue routable to ops, CloudWatch alarm within 1 minute of any DLQ message
-- **Immutable ledger pattern** — QLDB for cryptographic proof or DynamoDB append-only with hash chain (documented decision, not a choice left open)
-- **Reconciliation service** — settlement file ingestion, match by trace/amount/timestamp, exceptions to ops queue, Athena for analytics
-- **SLOs and monitoring** — per-stage metrics, PagerDuty routing, dashboards for pending counts by failure reason
-- **Structured logging + PII gating** — JSON with correlation_id, masked PII, Macie checks, indexed in CloudWatch/OpenSearch
-- **PSP status mapping** — external PSP/bank statuses mapped to internal lifecycle enums (INITIATED → AUTH_PENDING → CLEARED → SETTLED → FAILED → REVERSED)
-- **Ops UI for exceptions** — queue entries with 1-click reprocess or compensation, audit trail for manual fixes
+The diagrams are conceptual. They do not represent an official Pay.UK architecture, an AWS reference implementation or a design validated for a specific organisation.
 
 ---
 
-## Full Platform Access
+## How to use the blueprint
 
-If you're building agent-based payment infrastructure and need more than a blueprint, architecture review, PCI DSS gap analysis, agent flow simulation, cost modelling, or ongoing infrastructure governance syncyourcloud.io can help.
+### 1. Define one payment flow
 
-**[Explore the platform →](https://syncyourcloud.io?utm_source=github&utm_medium=readme&utm_campaign=platform)**
+Choose one bounded flow, such as:
+
+- payment initiation;
+- authorisation;
+- account-to-account payment processing;
+- refund or reversal;
+- settlement and reconciliation;
+- payment-status notification.
+
+Document where the flow begins, where it ends and which external organisations participate.
+
+### 2. Replace generic components
+
+Adapt the diagram using generic system roles before adding environment-specific detail.
+
+For example:
+
+- Payment API
+- Identity service
+- Orchestration service
+- Payment processor
+- Bank integration
+- Event queue
+- Transaction store
+- Reconciliation service
+- Monitoring service
+
+Avoid placing cardholder data, credentials, access keys, production account identifiers or other sensitive information in a public repository.
+
+### 3. Trace state and ownership
+
+For every material step, record:
+
+- the system responsible;
+- the expected input and output;
+- the transaction state;
+- the authoritative record;
+- retry behaviour;
+- timeout behaviour;
+- failure ownership;
+- evidence or logging requirements;
+- open questions.
+
+### 4. Challenge failure paths
+
+Review what happens when:
+
+- a request is submitted more than once;
+- a downstream provider times out;
+- an event is delivered more than once;
+- a transaction succeeds but its response is lost;
+- an internal update and an external message disagree;
+- a regional or third-party dependency is unavailable;
+- a manual intervention changes transaction state.
+
+Event-driven systems can deliver duplicate messages. Consumers therefore need an explicit idempotency strategy rather than an assumption that every message will be processed only once.
+
+### 5. Record decisions and evidence
+
+Turn the review into working records:
+
+- current-state payment-flow diagram;
+- architecture findings register;
+- dependency and ownership inventory;
+- architecture decision records;
+- evidence-reference register;
+- open-question log;
+- prioritised remediation roadmap.
+
+These are preparation and decision-support artefacts. They are not substitutes for formal compliance-validation documents.
 
 ---
 
-## Related Reading
+## Architecture review questions
 
-- [AWS Infrastructure for Agent-Based Payment Execution: Architecture, Stages and Reliability](https://blog.syncyourcloud.io/agent-based-payment-infrastructure-the-complete-aws-architecture-for-9999-uptime)
-- [Payment State, Idempotency and Failure Handling: What Agent-Based Systems Actually Require](https://blog.syncyourcloud.io)
-- [Building Tomorrow's Financial Systems — 12-Part Series (Free)](https://architectsassemble.substack.com/p/building-tomorrows-financial-systems-e78)
+| Area | Questions to answer |
+|---|---|
+| Flow boundary | Where does the payment flow begin and end? |
+| Data | What data enters, moves through or leaves each component? |
+| State | Which component is authoritative for transaction state? |
+| Idempotency | How are duplicate requests and events recognised? |
+| Failure handling | What happens after timeouts, partial completion or inconsistent state? |
+| Recovery | Which actions are retried, reversed, compensated or escalated? |
+| Dependencies | Which banks, processors, schemes or internal services can interrupt the flow? |
+| Identity | Which human and machine identities can initiate or change an action? |
+| Observability | Can an authorised reviewer reconstruct the transaction lifecycle? |
+| Ownership | Who owns each control, decision, exception and remediation action? |
+| Evidence | What record demonstrates that the intended process operated? |
+| Validation | Which questions require confirmation from a QSA, acquirer or other specialist? |
 
 ---
 
-## Contact
+## AWS patterns to evaluate
 
-Questions about the architecture or the platform: enquiries@syncyourcloud.io
+The diagram can support discussion of patterns such as:
+
+- asynchronous processing and queue-based buffering;
+- workflow orchestration;
+- idempotent event consumption;
+- transactional outbox or change-data-capture patterns;
+- dead-letter handling;
+- encryption and key-management boundaries;
+- logging, monitoring and trace correlation;
+- multi-Availability-Zone or multi-Region recovery;
+- reconciliation and exception management.
+
+These are design options, not universal recommendations. The correct choice depends on transaction semantics, recovery requirements, volume, latency, security scope, operating model and external-provider behaviour.
 
 ---
 
-*All content © Lee C / SyncYourCloud.io. Architecture diagrams shared for educational use. All rights reserved.*
+## Important limitations
+
+This repository:
+
+- does not deploy AWS resources;
+- does not connect to a payment processor or bank;
+- does not process or test real transactions;
+- does not establish PCI DSS scope;
+- does not verify implementation effectiveness;
+- does not provide PCI DSS certification;
+- does not replace a QSA, penetration tester, legal adviser or compliance-accepting entity;
+- does not guarantee acceptance by an assessor, acquirer, payment brand or regulator.
+
+Before implementing any pattern, validate it against your own requirements, threat model, transaction semantics and recovery objectives.
+
+---
+
+## Handling sensitive architecture information
+
+Network diagrams, account-data-flow diagrams, security configurations and control records may be sensitive.
+
+When adapting this blueprint:
+
+- use synthetic or redacted identifiers;
+- never include PAN, authentication data, credentials or secrets;
+- avoid production hostnames, IP addresses, ARNs and account IDs;
+- keep client-specific diagrams in approved private storage;
+- restrict access according to the organisation’s policies;
+- use separate, sanitised diagrams for demonstrations or public case studies.
+
+---
+
+## Independent payment architecture review
+
+If an existing payment flow has unclear boundaries, failure paths, ownership or evidence requirements, Sync Your Cloud provides a focused independent review.
+
+The review follows three stages:
+
+1. **Assess** — map the existing flow, boundaries, dependencies, ownership and available evidence.
+2. **Test** — challenge architecture assumptions, failure scenarios, recovery decisions and evidence traceability.
+3. **Evidence** — document findings, decisions, open questions, responsible owners and prioritised next actions.
+
+The intended result is a clearer current-state architecture and a practical action plan for engineering, security and compliance teams.
+
+**[Explore the Payment Architecture Review](https://www.syncyourcloud.io/payment-architecture?utm_source=github&utm_medium=readme&utm_campaign=payment_blueprint)**
+
+Five founding-client places are being opened for organisations with one important payment flow requiring independent review.
+
+**Contact:** [enquiries@syncyourcloud.io](mailto:enquiries@syncyourcloud.io?subject=Payment%20Architecture%20Review)
+
+---
+
+## Authoritative references
+
+- [AWS Guidance for Building Payment Systems Using Event-Driven Architecture](https://docs.aws.amazon.com/solutions/building-payment-systems-using-event-driven-architecture-on-aws/)
+- [AWS Prescriptive Guidance: Transactional Outbox Pattern](https://docs.aws.amazon.com/prescriptive-guidance/latest/cloud-design-patterns/transactional-outbox.html)
+- [AWS Well-Architected Financial Services Industry Lens](https://docs.aws.amazon.com/wellarchitected/latest/financial-services-industry-lens/)
+- [PCI SSC: PCI DSS v4.0.1 publication and changes](https://blog.pcisecuritystandards.org/just-published-pci-dss-v4-0-1)
+- [PCI SSC: Assessment applicability and validation responsibilities](https://www.pcisecuritystandards.org/faqs/1473/)
+
+---
+
+## Status
+
+This repository currently contains conceptual documentation and architecture diagrams.
+
+Future changes should be clearly classified as one of:
+
+- proposed;
+- under review;
+- verified against an authoritative source;
+- implemented and tested.
+
+A proposed pattern must not be described as implemented, production-ready or compliant without separate evidence.
+
+---
+
+## Copyright
+
+Copyright © Sync Your Cloud.
+
+The architecture and documentation are provided for educational review. No licence to reuse, redistribute or deploy the material is granted unless a separate licence is added to this repository.
